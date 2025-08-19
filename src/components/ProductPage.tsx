@@ -1,6 +1,6 @@
 import { useState } from "react";
 import QuantitySelector from "./QuantitySelector";
-import cart from "../assets/images/icon-cart.svg";
+import { IoCartOutline } from "react-icons/io5";
 import image1 from "../assets/images/image1.jpg";
 import image2 from "../assets/images/image2.jpg";
 import image3 from "../assets/images/image3.jpg";
@@ -23,10 +23,8 @@ export default function ProductPage({ handleAddToCart }: ProductPageProps) {
   const [selectedImage, setSelectedImage] = useState(0);
 
   return (
-    <div className="md:px-12 lg:p-24 flex flex-col md:flex-row gap-8 lg:gap-32 items-center justify-center w-full max-w-[1200px] mx-auto">
-      {/* Images Section */}
+    <div className="md:px-12 mb-7 md:mb lg:p-24 flex flex-col md:flex-row gap-8 lg:gap-32 items-center justify-center w-full max-w-[1200px] mx-auto">
       <div className="flex flex-col md:w-1/2 w-full md:p-0">
-        {/* Mobile Swiper */}
         <div className="md:hidden ">
           <ImageSwiper
             images={images}
@@ -35,7 +33,6 @@ export default function ProductPage({ handleAddToCart }: ProductPageProps) {
           />
         </div>
 
-        {/* Desktop Image */}
         <div
           className="hidden md:block w-full cursor-pointer"
           onClick={() => setLightboxOpen(true)}
@@ -47,7 +44,6 @@ export default function ProductPage({ handleAddToCart }: ProductPageProps) {
           />
         </div>
 
-        {/* Thumbnails (Desktop only) */}
         <div className="hidden md:flex gap-8 mt-4 flex-wrap justify-center items-center">
           {images.map((img, index) => (
             <div
@@ -69,14 +65,12 @@ export default function ProductPage({ handleAddToCart }: ProductPageProps) {
           ))}
         </div>
 
-        {/* Lightbox Modal */}
         {lightboxOpen && (
           <Modal images={images} onClose={() => setLightboxOpen(false)} />
         )}
       </div>
 
-      {/* Product Info Section */}
-      <div className="md:w-2/4 w-[80%]">
+      <div className="md:w-2/4 p-4">
         <div className="flex flex-col gap-4 w-full">
           <p className="text-[#68707d] font-bold">SNEAKER COMPANY</p>
           <h1 className="font-bold text-[30px] md:text-5xl">
@@ -87,7 +81,7 @@ export default function ProductPage({ handleAddToCart }: ProductPageProps) {
             Featuring a durable rubber outer sole, they’ll withstand everything
             the weather can offer.
           </p>
-          <div className="flex flex-row md:flex-col justify-between mt-2 md:gap-4 md:items-start">
+          <div className="flex flex-row md:flex-col justify-between mt-2 md:gap-4 items-center md:items-start">
             <div className="flex gap-3 items-center">
               <p className="font-bold text-[30px] md:text-4xl">$125.00</p>
               <p className="bg-black px-3 py-[2px] text-white rounded-[8px]">
@@ -100,9 +94,16 @@ export default function ProductPage({ handleAddToCart }: ProductPageProps) {
             <QuantitySelector quantity={quantity} setQuantity={setQuantity} />
             <button
               onClick={() => handleAddToCart(quantity, setQuantity)}
-              className="md:flex-1 bg-[#FF7D1A] text-black py-4 px-4 rounded-md font-bold hover:bg-[#FFEDE0] hover:cursor-pointer transition flex items-center justify-center gap-2 w-full"
+              className="
+    md:flex-1 
+    bg-[#FF7D1A] text-black py-4 px-4 rounded-md font-bold 
+    hover:bg-[#FFEDE0] hover:cursor-pointer transition 
+    flex items-center justify-center gap-2 w-full
+    shadow-[0_8px_15px_rgba(255,125,26,0.5)] 
+    hover:shadow-none
+  "
             >
-              <img src={cart} alt="Cart" className="w-4 h-4" />
+               <IoCartOutline />
               Add to cart
             </button>
           </div>

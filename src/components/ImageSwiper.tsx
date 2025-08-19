@@ -19,7 +19,6 @@ export default function ImageSwiper({
 
   return (
     <div className="w-full max-w-md mx-auto">
-      {/* Main image */}
       <div className="relative">
         <img
           src={images[selectedImage]}
@@ -27,7 +26,6 @@ export default function ImageSwiper({
           className="w-full cursor-pointer rounded-none md:rounded-2xl"
         />
 
-        {/* Previous button */}
         <button
           onClick={handlePrevious}
           className="absolute top-1/2 left-2 -translate-y-1/2 p-3 rounded-full bg-white shadow-md hover:text-[#FF7D1A]"
@@ -47,8 +45,6 @@ export default function ImageSwiper({
             />
           </svg>
         </button>
-
-        {/* Next button */}
         <button
           onClick={handleNext}
           className="absolute top-1/2 right-2 -translate-y-1/2 p-3 rounded-full bg-white shadow-md  hover:text-[#FF7D1A]"

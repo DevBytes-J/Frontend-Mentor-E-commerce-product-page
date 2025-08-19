@@ -1,4 +1,4 @@
-// LightboxModal.tsx
+
 import { useState, useEffect } from "react";
 import ImageSwiper from "./ImageSwiper";
 
@@ -11,10 +11,9 @@ export default function LightboxModal({ images, onClose }: LightboxModalProps) {
   const [selectedImage, setSelectedImage] = useState(0);
   const [isDesktop, setIsDesktop] = useState(true);
 
-  // Track screen size so modal only shows for tablet/desktop
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsDesktop(window.innerWidth >= 768); // md breakpoint
+      setIsDesktop(window.innerWidth >= 768); 
     };
     checkScreenSize();
     window.addEventListener("resize", checkScreenSize);
@@ -25,9 +24,8 @@ export default function LightboxModal({ images, onClose }: LightboxModalProps) {
   if (!isDesktop) return null; 
 
   return (
-    <div className="fixed inset-0 bg-black/35 bg-opacity-75 flex items-center justify-center z-[100] px-4">
+    <div className="fixed inset-0 bg-black/75  flex items-center justify-center z-[100] px-4">
       <div className="relative max-w-xl w-full rounded-xl">
-        {/* Close button */}
         <button
           onClick={onClose}
           className="absolute -top-10 right-0 text-white hover:text-[#FF7D1A] transition cursor-pointer" 
@@ -48,7 +46,6 @@ export default function LightboxModal({ images, onClose }: LightboxModalProps) {
           </svg>
         </button>
 
-        {/* Image Swiper */}
         <div className="w-full">
           <ImageSwiper
             images={images}
@@ -57,7 +54,6 @@ export default function LightboxModal({ images, onClose }: LightboxModalProps) {
           />
         </div>
 
-        {/* Thumbnails (Desktop/Tablet only) */}
         <div className="hidden md:flex gap-4 mt-4 flex-wrap justify-center items-center">
           {images.map((img, index) => (
             <img

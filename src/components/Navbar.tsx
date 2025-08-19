@@ -2,7 +2,8 @@ import { useState, useRef, useEffect } from "react";
 import type { CartItem } from "../types/cart";
 import CartDropdown from "./CartDropdown";
 import Logo from "../assets/images/logo.svg";
-import cartIcon from "../assets/images/icon-cart.svg";
+import { IoCartOutline } from "react-icons/io5";
+
 import avatar from "../assets/images/image-avatar.png";
 import { MdMenu, MdClose } from "react-icons/md";
 
@@ -21,7 +22,6 @@ export default function Navbar({
 
   const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
-  // Use a timer to delay showing/hiding the dropdown
   let timeoutId: number;
 
   const handleMouseEnter = () => {
@@ -30,13 +30,12 @@ export default function Navbar({
   };
 
   const handleMouseLeave = () => {
-    // Delay hiding the dropdown by 300ms
     timeoutId = setTimeout(() => {
       setIsDropdownVisible(false);
     }, 300);
   };
 
-  // Clear the timeout when the component unmounts
+  
   useEffect(() => {
     return () => clearTimeout(timeoutId);
   });
@@ -53,7 +52,6 @@ export default function Navbar({
               <MdMenu size={20} />
             </button>
 
-            {/* Logo */}
             <img src={Logo} alt="logo" className="h-4 md:h-6 " />
 
             <ul className="hidden min-[901px]:flex gap-6 text-[#68707d] hover:cursor-pointer">
@@ -73,14 +71,14 @@ export default function Navbar({
 
           <div className="flex items-center gap-6">
             <div
-              className="relative cursor-pointer"
+              className="relative cursor-pointer text-black"
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
-              ref={dropdownRef} // The ref is no longer strictly needed for this logic but is good to keep for accessibility
+              ref={dropdownRef}
             >
-              <img src={cartIcon} alt="Cart" className="w-6 h-6" />
+               <IoCartOutline size={30}/>
               {totalItems > 0 && (
-                <span className="absolute -top-2 -right-2 bg-[#FF7D1A] text-white text-[10px] rounded-full w-4 h-3 flex items-center justify-center font-bold">
+                <span className="absolute -top-1 -right-2 bg-[#FF7D1A] text-white text-[10px] rounded-full w-4 h-3 flex items-center justify-center font-bold">
                   {totalItems}
                 </span>
               )}
@@ -94,14 +92,14 @@ export default function Navbar({
             <img
               src={avatar}
               alt="User Avatar"
-              className="w-8 h-8 rounded-full border-2 border-transparent hover:border-[#FF7D1A] transition-all duration-300"
+              className="w-9 h-9 hover:cursor-pointer rounded-full border-2 border-transparent hover:border-[#FF7D1A] transition-all duration-300"
             />
           </div>
         </nav>
         <div className="border-b mx-[14%] border-[#f8f9fd]"></div>
       </header>
 
-      {/* Sidebar (remains the same) */}
+
       <aside className="block min-[901px]:hidden">
         {sidebarOpen && (
           <div
