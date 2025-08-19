@@ -4,26 +4,29 @@ import image1 from "../assets/images/image1.jpg";
 type CartDropdownProps = {
   cartItems: CartItem[];
   handleRemoveFromCart: (id: number) => void;
+  onClose: () => void; // Callback to close the dropdown
 };
 
 export default function CartDropdown({
   cartItems,
   handleRemoveFromCart,
+  onClose,
 }: CartDropdownProps) {
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center w-full">
       <div
-        className="absolute top-8 right-[-65px]  mt-2 w-85 bg-white rounded-lg shadow-xl overflow-hidden
-    sm:left-1/2 sm:right-auto sm:-translate-x-1/2 sm:w-[90%] md:right-14 md:left-auto md:translate-x-0 md:w-80 "
+        className="
+          absolute top-8 right-[-65px] mt-2 w-85 bg-white rounded-lg shadow-xl overflow-hidden
+          sm:left-1/2 sm:right-auto sm:-translate-x-1/2 sm:w-[90%] 
+          md:right-14 md:left-auto md:translate-x-0 md:w-80
+        "
       >
-        <div className="p-4 border-b border-gray-200 font-bold">Cart</div>
+        <div className="p-4 border-b border-gray-200 font-bold text-center">Cart</div>
         <div className="p-4">
           {cartItems.length === 0 ? (
-            <p className="text-gray-500 text-center py-10">
-              Your cart is empty.
-            </p>
+            <p className="text-gray-500 text-center py-10">Your cart is empty.</p>
           ) : (
-            <div>
+            <div className="flex flex-col gap-4">
               {cartItems.map((item) => (
                 <div
                   key={item.id}
@@ -44,8 +47,11 @@ export default function CartDropdown({
                     </p>
                   </div>
                   <button
-                    onClick={() => handleRemoveFromCart(item.id)}
-                    className="ml-4 p-1 rounded-full hover:bg-gray-100"
+                    onClick={() => {
+                      handleRemoveFromCart(item.id);
+                      onClose(); 
+                    }}
+                    className="ml-4 p-1 rounded-full hover:bg-gray-100 hover:cursor-pointer"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +64,11 @@ export default function CartDropdown({
                   </button>
                 </div>
               ))}
-              <button className="w-full bg-[#FF7D1A] text-white py-3 rounded-lg font-bold hover:bg- transition">
+
+              <button
+                onClick={onClose} 
+                className="w-full bg-[#FF7D1A] text-white py-3 rounded-lg font-bold hover:bg-[#FFEDE0] transition hover:cursor-pointer"
+              >
                 Checkout
               </button>
             </div>

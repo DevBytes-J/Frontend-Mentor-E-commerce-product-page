@@ -8,7 +8,7 @@ type QuantitySelectorProps = {
 
 export default function QuantitySelector({ quantity, setQuantity }: QuantitySelectorProps) {
   return (
-    <div className="flex items-center justify-between bg-gray-100 p-3 px-10 rounded-md w-full md:w-auto md:flex-none ">
+    <div className="flex items-center justify-between bg-[#f8f9fd] gap-3 p-3 px-10 rounded-md w-full md:w-auto md:flex-none ">
       <button onClick={() => setQuantity(q => Math.max(q - 1, 0))} className="p-2 hover:bg-gray-200 rounded hover:cursor-pointer">
         <img src={minus} alt="minus" className="hover:cursor-pointer"/>
       </button>

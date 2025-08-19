@@ -86,6 +86,7 @@ export default function Navbar({
                 <CartDropdown
                   cartItems={cartItems}
                   handleRemoveFromCart={handleRemoveFromCart}
+                   onClose={() => setIsDropdownVisible(false)}
                 />
               )}
             </div>
